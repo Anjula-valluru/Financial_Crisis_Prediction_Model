@@ -1,7 +1,7 @@
 # 📉 Financial Crises, Exchange Rate Volatility, and Socioeconomic Impact
 
 > A Machine Learning Framework for Early Warning Systems in Global Financial Stability  
-> **Authors**: Valluru Anjula Chakravarthy, Rohith Reddy Jonnalagadda, Allu Sagarika
+> **Authors**: Rohith Reddy Jonnalagadda, Allu Sagarika, Valluru Anjula Chakravarthy  
 > **Affiliation**: University of North Texas  
 > **Advisor**: Dr. Sam Shamroukh
 
@@ -9,65 +9,48 @@
 
 ## 📌 Abstract
 
-This project explores the development of an **early warning system** to forecast multiple types of financial crises—**banking**, **currency**, **systemic**, and **inflation**—using machine learning and macroeconomic indicators. By merging the **Reinhart-Rogoff Global Crisis dataset** with IMF economic data across **70 countries from 1980–2016**, the study applies multi-output classification models (XGBoost, Random Forest, KNN) to identify patterns and predictors of economic instability.
+This project investigates the early detection of financial crises — banking, currency, and systemic — using machine learning and macroeconomic indicators. We utilize a merged dataset combining the **Reinhart-Rogoff Global Crisis Dataset** and **IMF macroeconomic indicators** for 70 countries between 1980–2016. 
 
-XGBoost achieved the best performance, particularly in forecasting **systemic and inflation crises**, demonstrating the feasibility of ensemble-based AI models in economic risk assessment. The research bridges **macroeconomic theory** with **modern machine learning**, paving the way for scalable, data-driven early warning systems.
+Our best-performing model, **XGBoost**, demonstrated superior accuracy in predicting systemic and inflation-related crises. The project underscores the utility of AI tools in macroeconomic forecasting and crisis prevention, offering potential support for global financial policy decisions.
 
 ---
 
-## 📁 Project Structure
+## 🎯 Project Objectives
+
+- Identify macroeconomic signals preceding financial crises.
+- Evaluate the impact of **USD exchange rate volatility** on global stability.
+- Develop and compare multi-output classification models.
+- Recommend machine learning methods for real-time financial crisis monitoring.
+
+---
+
+## 📁 Current Repository Structure
 
 ```
-├── data/
-│   └── merged_financial_dataset.csv
-├── notebooks/
-│   └── eda_and_modeling.ipynb
-├── src/
-│   ├── preprocessing.py
-│   ├── models.py
-│   └── evaluate.py
-├── figures/
-│   └── correlation_heatmap.png
-├── report/
-│   └── Project_Proposal_Draft.pdf
-└── README.md
+├── financial_crisis_analysis.ipynb    # Main notebook containing EDA, feature engineering, modeling, and results()
+└── README.md                          # Project documentation
 ```
 
----
-
-## 🎯 Objectives
-
-- Analyze global financial crises (1980–2016) using economic indicators.
-- Investigate the role of **USD exchange rate volatility** in global financial stability.
-- Predict crisis occurrence using **multi-output classification models**.
-- Provide policymakers and financial institutions with **early warning insights**.
+> Additional scripts and datasets used during development are not included in this public version.
 
 ---
 
-## 🧠 Methodology
+## 🧠 Methodology Summary
+
 
 - **Data Sources**:
-  - Reinhart-Rogoff Financial Crisis Dataset (1800–Present)
-  - Macroeconomic Indicators from IMF
+  - Reinhart-Rogoff Crisis Data (1800–Present)
+  - IMF World Economic Outlook Data (1980–2016)
 
-- **Target Variables**:
-  - `Banking Crisis`, `Currency Crisis`, `Systemic Crisis`
+- **Data Preprocessing**:
+  - Missing data handled via **MICE (Multiple Imputation by Chained Equations)**
+  - Normality tested with **Shapiro-Wilk**
+  - Multicollinearity checked via **VIF**
+  - Non-parametric tree-based models chosen due to non-linearity
 
-- **Key Features**:
-  - `GDP per capita`, `Exchange Rate (exch_usd)`, `Inflation Rate`, `Unemployment`, `Debt Defaults`, etc.
-
-- **Preprocessing**:
-  - Missing data handled using **MICE (Multiple Imputation by Chained Equations)**
-  - Shapiro-Wilk test for normality
-  - VIF for multicollinearity check
-
-- **Models**:
-  - ✅ XGBoost (Best performance)
-  - ✅ Random Forest
-  - ✅ K-Nearest Neighbors (baseline)
-
-- **Evaluation Metrics**:
-  - Accuracy, Precision, Recall, F1-Score
+- **Modeling**:
+  - Multi-output classifiers: `XGBoost`, `Random Forest`, `K-Nearest Neighbors (KNN)`
+  - Evaluation using Accuracy, Precision, Recall, F1-Score
 
 ---
 
@@ -79,50 +62,51 @@ XGBoost achieved the best performance, particularly in forecasting **systemic an
 | Random Forest | 83% accuracy   | 87% accuracy     | 89% accuracy     |
 | KNN           | 78% accuracy   | 81% accuracy     | 86% accuracy     |
 
----
-
-## 🔍 Visual Insights
-
-- 📌 Correlation heatmap showing weak linearity → supports use of tree-based models.
-- 🗺️ Country-wise banking crisis distribution: highest in Zimbabwe, Congo, and Central African Republic.
-- 📈 Time series trends: crisis peaks in late 1990s and during 2008 Global Financial Crisis.
+> Inflation crises were excluded from final conclusions due to perfect accuracy (100%) indicating likely data leakage or overfitting.
 
 ---
 
-## 🧰 Tools & Libraries
+## 📌 Key Insights
 
-| Tool/Library | Purpose |
-|--------------|---------|
-| **Python** | Main implementation language |
-| Pandas, NumPy, SciPy | Data processing and assumption testing |
-| Matplotlib, Seaborn | Data visualization |
-| XGBoost, Scikit-learn | Machine Learning |
-| R (tidyverse, dplyr) | Additional statistical analysis |
-| SQL, Excel | Data wrangling |
+- Exchange rate volatility and sovereign debt exposure are crucial leading indicators.
+- USD appreciation often triggers financial tightening and crisis vulnerability.
+- Crises are **not exclusive to developing economies** — developed countries are also at risk.
+- Ensemble models outperform distance-based classifiers in handling macroeconomic data.
+
+---
+
+## 🧰 Tech Stack
+
+| Tool/Library       | Purpose                          |
+|--------------------|----------------------------------|
+| Python             | Core programming language        |
+| Pandas, NumPy      | Data handling                    |
+| SciPy, Scikit-learn| Statistics, ML models            |
+| XGBoost            | Gradient boosting classification |
+| Matplotlib, Seaborn| Visualization                    |
+| R (Tidyverse)      | Supplementary statistical tests  |
 
 ---
 
 ## ❓ Research Questions
 
-- What macroeconomic indicators serve as leading signals of financial crises?
-- How do exchange rate fluctuations impact financial stability?
-- Are developing economies more prone to currency crises?
-- Can ensemble models predict multiple crisis types with high reliability?
+- Can macroeconomic variables serve as early-warning indicators?
+- How do exchange rate and inflation behave prior to crises?
+- What is the role of USD dominance in global instability?
+- Are ensemble models effective in forecasting multiple crisis types?
 
 ---
 
-## 🚀 Future Work
+## 🔮 Future Directions
 
-- Incorporate **quarterly/monthly data** for improved sensitivity.
-- Apply **temporal models** like LSTMs or Transformers to capture lagged effects.
-- Explore **sentiment analysis** using global news and investor confidence indices.
-- Stratify models based on country clusters or economic zones.
+- Use **higher-frequency data** (monthly/quarterly) to improve sensitivity.
+- Introduce **time-aware models** (LSTM, Transformer).
+- Incorporate **market sentiment/news-based data**.
+- Cluster countries based on economic characteristics for tailored models.
 
 ---
 
 ## 📄 Citation
-
-If you use this repository for your research, please cite:
 
 ```
 @unpublished{chakravarthy2025crisisML,
@@ -137,4 +121,5 @@ If you use this repository for your research, please cite:
 
 ## 🙏 Acknowledgements
 
-We express deep gratitude to **Dr. Sam Shamroukh** for his mentorship, and to our peers **Raahul Raj Akula** and **Bhavana Raj Rayapudi** for their support during this research journey.
+Special thanks to **Dr. Sam Shamroukh** for mentorship, and to peers **Raahul Raj Akula** and **Bhavana Raj Rayapudi** for their support during this research.
+
